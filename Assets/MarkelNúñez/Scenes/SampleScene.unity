@@ -373,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304672651}
-  - component: {fileID: 1304672650}
+  - component: {fileID: 1304672652}
   m_Layer: 0
   m_Name: FlechasManager
   m_TagString: Untagged
@@ -381,23 +381,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1304672650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304672649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89aad10e8307e14e8e7d091d0c4c3fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flechaPrefab: {fileID: 5614691665169341927, guid: 63d35be33a0c6d6429f75f63946f00ec, type: 3}
-  flechasOffsets:
-  - {x: 0, y: 0, z: 1.5}
-  - {x: 0, y: 0, z: 3}
-  - {x: 1, y: 0, z: 4.5}
 --- !u!4 &1304672651
 Transform:
   m_ObjectHideFlags: 0
@@ -413,6 +396,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1304672652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304672649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f1e5677040e3f43aa8f321b5dafecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flechaPrefab: {fileID: 5614691665169341927, guid: 63d35be33a0c6d6429f75f63946f00ec, type: 3}
+  flechasOffsets:
+  - {x: 0, y: -0.1, z: 1.5}
+  - {x: 0, y: -0.1, z: 3}
+  - {x: 1, y: -0.1, z: 4.5}
 --- !u!1 &1361354835
 GameObject:
   m_ObjectHideFlags: 0
