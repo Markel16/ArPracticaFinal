@@ -192,7 +192,6 @@ GameObject:
   m_Component:
   - component: {fileID: 346306725}
   - component: {fileID: 346306724}
-  - component: {fileID: 346306723}
   - component: {fileID: 346306726}
   m_Layer: 0
   m_Name: XR Origin
@@ -201,27 +200,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &346306723
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346306722}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &346306724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,9 +388,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flechaPrefab: {fileID: 5614691665169341927, guid: 63d35be33a0c6d6429f75f63946f00ec, type: 3}
   flechasOffsets:
-  - {x: 0, y: -0.1, z: 1.5}
-  - {x: 0, y: -0.1, z: 3}
-  - {x: 1, y: -0.1, z: 4.5}
+  - {x: 3, y: 0.2, z: 0.5}
+  - {x: 3, y: 0.2, z: 2}
+  - {x: 3, y: 0.2, z: 3.5}
 --- !u!1 &1361354835
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,9 +405,11 @@ GameObject:
   - component: {fileID: 1361354839}
   - component: {fileID: 1361354838}
   - component: {fileID: 1361354837}
+  - component: {fileID: 1361354843}
+  - component: {fileID: 1361354842}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,6 +621,54 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!54 &1361354842
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361354835}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1361354843
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361354835}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1606627992
 GameObject:
   m_ObjectHideFlags: 0

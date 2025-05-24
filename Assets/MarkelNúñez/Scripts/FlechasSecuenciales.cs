@@ -34,8 +34,23 @@ public class FlechasSecuenciales : MonoBehaviour
     {
         foreach (ARTrackedImage trackedImage in eventArgs.added)
         {
+            Debug.Log("¡Imagen detectada: " + trackedImage.referenceImage.name + "!");
             imagenActiva = trackedImage;
             CrearSiguienteFlecha();
+        }
+
+        foreach (ARTrackedImage trackedImage in eventArgs.updated)
+        {
+            if (imagenActiva == null)
+            {
+                imagenActiva = trackedImage;
+                Debug.Log("Imagen actualizada: " + trackedImage.referenceImage.name);
+            }
+        }
+
+        foreach (ARTrackedImage trackedImage in eventArgs.removed)
+        {
+            Debug.Log("Imagen eliminada: " + trackedImage.referenceImage.name);
         }
     }
 
@@ -50,14 +65,27 @@ public class FlechasSecuenciales : MonoBehaviour
         if (indiceActual >= flechasOffsets.Count || imagenActiva == null)
             return;
 
+        if (flechaPrefab == null)
+        {
+            Debug.LogError(" ERROR: El prefab de la flecha no está asignado en el inspector.");
+            return;
+        }
+
         Vector3 offset = flechasOffsets[indiceActual];
         Vector3 posicionMundo = imagenActiva.transform.TransformPoint(offset);
+
         GameObject nuevaFlecha = Instantiate(flechaPrefab, posicionMundo, Quaternion.LookRotation(imagenActiva.transform.forward));
+
+        if (nuevaFlecha == null)
+        {
+            Debug.LogError(" ERROR: No se pudo instanciar la flecha.");
+            return;
+        }
 
         FlechaTrigger trigger = nuevaFlecha.AddComponent<FlechaTrigger>();
         trigger.manager = this;
 
+        Debug.Log("Flecha instanciada correctamente en el paso " + (indiceActual + 1));
         indiceActual++;
     }
 }
-

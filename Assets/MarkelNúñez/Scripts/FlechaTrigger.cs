@@ -8,8 +8,8 @@ public class FlechaTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Colisión con flecha detectada, activando siguiente");
             manager.SiguienteFlecha(this.gameObject);
         }
     }
 }
-
