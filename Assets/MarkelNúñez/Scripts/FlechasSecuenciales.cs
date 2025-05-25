@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ public class FlechasSecuenciales : MonoBehaviour
 
     private int indiceActual = 0;
     private ARTrackedImage imagenActiva;
+    private GameObject ultimaFlecha = null;
 
     void Awake()
     {
@@ -34,7 +35,7 @@ public class FlechasSecuenciales : MonoBehaviour
     {
         foreach (ARTrackedImage trackedImage in eventArgs.added)
         {
-            Debug.Log("�Imagen detectada: " + trackedImage.referenceImage.name + "!");
+            Debug.Log("¡Imagen detectada: " + trackedImage.referenceImage.name + "!");
             imagenActiva = trackedImage;
             CrearSiguienteFlecha();
         }
@@ -60,32 +61,40 @@ public class FlechasSecuenciales : MonoBehaviour
         CrearSiguienteFlecha();
     }
 
-    void CrearSiguienteFlecha()
+    public void CrearSiguienteFlecha()
     {
-        if (indiceActual >= flechasOffsets.Count || imagenActiva == null)
-            return;
-
-        if (flechaPrefab == null)
-        {
-            Debug.LogError(" ERROR: El prefab de la flecha no est� asignado en el inspector.");
-            return;
-        }
+        if (indiceActual >= flechasOffsets.Count) return;
 
         Vector3 offset = flechasOffsets[indiceActual];
-        Vector3 posicionMundo = imagenActiva.transform.TransformPoint(offset);
+        Vector3 posicion;
 
-        GameObject nuevaFlecha = Instantiate(flechaPrefab, posicionMundo, Quaternion.LookRotation(imagenActiva.transform.forward));
-
-        if (nuevaFlecha == null)
+        if (indiceActual == 0 && imagenActiva != null)
         {
-            Debug.LogError(" ERROR: No se pudo instanciar la flecha.");
+            // La primera flecha se coloca desde la imagen, sin rotación
+            posicion = imagenActiva.transform.position + offset;
+        }
+        else if (ultimaFlecha != null)
+        {
+            // Las siguientes flechas se colocan en cadena desde la anterior, sin rotación
+            posicion = ultimaFlecha.transform.position + offset;
+        }
+        else
+        {
+            Debug.LogWarning("No se puede colocar la flecha, no hay referencia.");
             return;
         }
+
+        Quaternion rotacion = Quaternion.LookRotation(offset.normalized);
+        GameObject nuevaFlecha = Instantiate(flechaPrefab, posicion, rotacion);
 
         FlechaTrigger trigger = nuevaFlecha.AddComponent<FlechaTrigger>();
         trigger.manager = this;
 
-        Debug.Log("Flecha instanciada correctamente en el paso " + (indiceActual + 1));
+        ultimaFlecha = nuevaFlecha;
+        Debug.Log("✅ Flecha instanciada correctamente en el paso " + (indiceActual + 1));
+
         indiceActual++;
     }
+
+
 }
